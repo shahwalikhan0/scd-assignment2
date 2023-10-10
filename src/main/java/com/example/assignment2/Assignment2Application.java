@@ -8,7 +8,7 @@ import java.util.Scanner;
 @SpringBootApplication
 public class Assignment2Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws StackFullException, StackEmptyException {
         System.out.println("Enter stack size: ");
         Scanner sc=new Scanner(System.in);
         int size=sc.nextInt();
@@ -26,5 +26,4 @@ public class Assignment2Application {
         System.out.println("Stack size: " + stack.size());
         System.out.println("Is Empty: " + stack.isEmpty());
     }
-
 }
