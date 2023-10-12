@@ -1,12 +1,33 @@
 package com.example.assignment2;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class Assignment2Application {
+    public static List<int[]> mergeIntervals(List<int[]> intervals) {
+        if (intervals.isEmpty()) {
+            return intervals;
+        }
+
+        List<int[]> mergedIntervals = new ArrayList<>();
+        int[] currentInterval = intervals.get(0);
+
+        for (int i = 1; i < intervals.size(); i++) {
+            int[] nextInterval = intervals.get(i);
+
+            if (currentInterval[1] >= nextInterval[0]) {
+                currentInterval[1] = Math.max(currentInterval[1], nextInterval[1]);
+            } else {
+                mergedIntervals.add(currentInterval);
+                currentInterval = nextInterval;
+            }
+        }
+        mergedIntervals.add(currentInterval);
+        return mergedIntervals;
+    }
 
     public static void main(String[] args) throws StackFullException, StackEmptyException {
         //task 1
@@ -36,7 +57,18 @@ public class Assignment2Application {
         str.add('b');
         str.add('a');
         str.add('b');
+//        str.getFirstNonRepeating();
 
-        str.getFirstNonRepeating();
+        //task 3
+        List<int[]> intervals = new ArrayList<>();
+        intervals.add(new int[]{1, 3});
+        intervals.add(new int[]{2, 6});
+        intervals.add(new int[]{8, 10});
+        intervals.add(new int[]{15, 18});
+
+        List<int[]> mergedIntervals = mergeIntervals(intervals);
+        for (int[] interval : mergedIntervals) {
+            System.out.print("[" + interval[0] + ", " + interval[1] + "] ");
+        }
     }
 }
