@@ -36,7 +36,8 @@ public class Assignment2Application {
         str.add('b');
         str.add('a');
         str.add('b');
-
         str.getFirstNonRepeating();
+
+        //task 3
     }
 }
